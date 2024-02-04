@@ -2,7 +2,7 @@ package com.tutorial.apiapplication.resource;
 
 import com.tutorial.apiapplication.model.Employee;
 import com.tutorial.apiapplication.service.EmployeeService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -12,9 +12,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/employees")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class EmployeeResource {
     private final EmployeeService employeeService;
+
+    public EmployeeResource(@Qualifier(value = "mySQLEmployeeService") EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
 
     @GetMapping
     public ResponseEntity<List<Employee>> getEmployees () {

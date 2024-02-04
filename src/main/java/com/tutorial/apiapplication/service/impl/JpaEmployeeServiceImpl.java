@@ -4,12 +4,14 @@ import com.tutorial.apiapplication.model.Employee;
 import com.tutorial.apiapplication.repository.JpaEmployeeRepository;
 import com.tutorial.apiapplication.service.EmployeeService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Service
+@Qualifier(value = "mySQLEmployeeService")
 public class JpaEmployeeServiceImpl implements EmployeeService {
     private JpaEmployeeRepository jpaEmployeeRepository;
 
